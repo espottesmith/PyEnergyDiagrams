@@ -230,15 +230,15 @@ class ED:
 
         # Create a figure and axis if the user didn't specify them.
         if not ax:
-            self.fig = plt.figure()
-            self.ax = self.fig.add_subplot(111, aspect=self.aspect)
+            self.fig = plt.figure(figsize=(10, 5))
+            self.ax = self.fig.add_subplot(111)
         # Otherwise register the axes and figure the user passed.
         else:
             self.ax = ax
             self.fig = ax.figure
 
             # Constrain the target axis to have the proper aspect ratio
-            self.ax.set_aspect(self.aspect)
+            # self.ax.set_aspect(self.aspect)
 
         self.ax.set_ylabel(ylabel)
         self.ax.axes.get_xaxis().set_visible(False)
@@ -338,6 +338,8 @@ class ED:
             # x,y,boxes,electrons,side,spacing_f
             x, y, boxes, electrons, side, spacing_f = box
             plot_orbital_boxes(self.ax, x, y, boxes, electrons, side, spacing_f)
+
+        plt.tight_layout()
 
     def __auto_adjust(self):
         '''
